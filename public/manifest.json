@@ -1,0 +1,10 @@
+{
+  "name": "OI Chat Account",
+  "start_url": "index.html",
+  "description": "OI Chat Account Manager",
+  "icons": [{
+    "src": "icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

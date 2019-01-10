@@ -1,0 +1,28 @@
+{
+  "name": "matrix-blockstack-auth",
+  "version": "0.1.0",
+  "description": "Blockstack-Matrix Account Manager",
+  "main": "index.js",
+  "scripts": {
+    "browserify": "browserify requires.js -o public/bundle.js",
+    "start": "npm run browserify && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/friedger/matrix-blockstack-auth.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/friedger/matrix-blockstack-auth/issues"
+  },
+  "homepage": "https://github.com/friedger/matrix-blockstack-auth/#readme",
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "express": "^4.15.2",
+    "opn": "^4.0.2"
+  },
+  "dependencies": {
+    "blockstack": "^18.2.1"
+  }
+}
