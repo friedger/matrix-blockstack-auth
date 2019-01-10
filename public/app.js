@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 if (err) {
                   console.log(err);
                 } else {
-                  window.location = "https://matrix.to/#/!MiaZvYagNIApUrnazk:openintents.modular.im?via=openintents.modular.im&via=matrix.org&via=matrix.vsund.de"
+                  window.location = "https://chat.openintents.org/#/room/!MiaZvYagNIApUrnazk:openintents.modular.im?via=openintents.modular.im&via=matrix.org&via=matrix.vsund.de"
                 }
               });
             })
