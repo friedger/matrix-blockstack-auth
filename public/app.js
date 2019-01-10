@@ -1,3 +1,63 @@
+blockstackChat = {};
+
+(function(blockstackChat){
+  
+  blockstackChat.getOTP = function(userData) {
+    var txid = userData.identityAddress + "" + Math.random();
+    console.log("txid", txid)
+    return fetch("https://auth.openintents.org/c/" + txid, { method: "POST" })
+      .then(response => { return response.json(); }, error => console.log("error", error))
+      .then(c => {
+        const challenge = c.challenge;
+        console.log("challenge", challenge)
+        return blockstack.putFile("mxid.json", challenge, { encrypt: false }).then(() => {
+          return {
+            username: userData.identityAddress.toLowerCase(),
+            password: txid + "|" + window.location.origin + "|" + userData.username
+          }
+        }, error => console.log("err2", error))
+      })
+  }
+
+  blockstackChat.sendMessage = function(userData, roomId, message){
+    console.log("creating client")
+      var client = matrixcs.createClient("https://openintents.modular.im");
+      blockstackChat.getOTP(userData).then(result => {
+        client.login("m.login.password",
+          {
+            identifier: {
+              "type": "m.id.user",
+              "user": result.username
+            },
+            user: result.username,
+            password: result.password,
+            initial_device_display_name: "From OI Chat Account Manager"
+          }, function (err, data) {
+            console.log("err", err)
+            console.log("data", data)
+            if (!err) {
+              client.on("event", function (event) {
+                console.log(event.getType());
+              });
+            }
+            client.joinRoom(roomId, {}, function (err, data) {
+              var content = {
+                "body": message,
+                "msgtype": "m.text"
+              };
+              client.sendEvent(roomId, "m.room.message", content, "", (err, res) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  window.location = "https://chat.openintents.org/#/room/!MiaZvYagNIApUrnazk:openintents.modular.im?via=openintents.modular.im&via=matrix.org&via=matrix.vsund.de"
+                }
+              });
+            })
+          });
+      })
+  }
+}(blockstackChat));
+
 document.addEventListener("DOMContentLoaded", function (event) {
   document.getElementById('signin-button').addEventListener('click', function (event) {
     event.preventDefault()
@@ -17,30 +77,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById('section-2').style.display = 'block'
   }
 
-  function getOTP(userData) {
-    var txid = userData.identityAddress + "" + Math.random();
-    console.log("txid", txid)
-    return fetch("https://auth.openintents.org/c/" + txid, { method: "POST" })
-      .then(response => { return response.json(); }, error => console.log("error", error))
-      .then(c => {
-        const challenge = c.challenge;
-        console.log("challenge", challenge)
-        return blockstack.putFile("mxid.json", challenge, { encrypt: false }).then(() => {
-          return {
-            username: userData.identityAddress.toLowerCase(),
-            password: txid + "|" + window.location.origin + "|" + userData.username
-          }
-        }, error => console.log("err2", error))
-      })
-  }
-
   if (blockstack.isUserSignedIn()) {
     var userData = blockstack.loadUserData()
     var profile = userData.profile
     showProfile(profile)
     document.getElementById('generate-button').addEventListener('click', function (event) {
       event.preventDefault()
-      getOTP(userData).then(result => {
+      blockstackChat.getOTP(userData).then(result => {
         document.getElementById('id-address').innerHTML = result.username
         document.getElementById('password').innerHTML = result.password
       })
@@ -49,42 +92,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById('send-button').addEventListener('click', function (event) {
       event.preventDefault()
-      console.log("creating client")
-      var client = matrixcs.createClient("https://openintents.modular.im");
-      getOTP(userData).then(result => {
-        client.login("m.login.password",
-          {
-            identifier: {
-              "type": "m.id.user",
-              "user": result.username
-            },
-            user: result.username,
-            password: result.password,
-            initial_device_display_name: "From OI Chat Account Manager"
-          }, function (err, data) {
-            console.log("err", err)
-            console.log("data", data)
-            if (!err) {
-              client.on("event", function (event) {
-                console.log(event.getType());
-              });
-            }
-            var roomId = "!MiaZvYagNIApUrnazk:openintents.modular.im"
-            client.joinRoom(roomId, {}, function (err, data) {
-              var content = {
-                "body": "I have a question",
-                "msgtype": "m.text"
-              };
-              client.sendEvent(roomId, "m.room.message", content, "", (err, res) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  window.location = "https://chat.openintents.org/#/room/!MiaZvYagNIApUrnazk:openintents.modular.im?via=openintents.modular.im&via=matrix.org&via=matrix.vsund.de"
-                }
-              });
-            })
-          });
-      })
+      blockstackChat.sendMessage(userData, "!MiaZvYagNIApUrnazk:openintents.modular.im", "I have a question")
     })
   } else if (blockstack.isSignInPending()) {
     blockstack.handlePendingSignIn().then(function (userData) {
