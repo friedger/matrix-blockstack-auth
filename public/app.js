@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           console.log("challenge", challenge)
           console.log("profile", profile)
         blockstack.putFile("mxid.json", challenge, {encrypt:false}).then(() => {
-          document.getElementById('id-address').innerHTML = userData.identityAddress  
+          document.getElementById('id-address').innerHTML = userData.identityAddress.toLowerCase()  
           document.getElementById('password').innerHTML = txid + "|" + window.location.origin + "|" + userData.username  
         })
       }, error => console.log("err2", error));
