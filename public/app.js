@@ -76,7 +76,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 "msgtype": "m.text"
               };
               client.sendEvent(roomId, "m.room.message", content, "", (err, res) => {
-                console.log(err);
+                if (err) {
+                  console.log(err);
+                } else {
+                  window.location = "https://matrix.to/#/!MiaZvYagNIApUrnazk:openintents.modular.im?via=openintents.modular.im&via=matrix.org&via=matrix.vsund.de"
+                }
               });
             })
           });
