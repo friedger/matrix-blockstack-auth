@@ -69,13 +69,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 console.log(event.getType());
               });
             }
-            var content = {
-              "body": "I have a question",
-              "msgtype": "m.text"
-            };
-            client.sendEvent("!MiaZvYagNIApUrnazk:openintents.modular.im", "m.room.message", content, "", (err, res) => {
-              console.log(err);
-            });
+            var roomId = "!MiaZvYagNIApUrnazk:openintents.modular.im"
+            client.joinRoom(roomId, {}, function (err, data) {
+              var content = {
+                "body": "I have a question",
+                "msgtype": "m.text"
+              };
+              client.sendEvent(roomId, "m.room.message", content, "", (err, res) => {
+                console.log(err);
+              });
+            })
           });
       })
     })
