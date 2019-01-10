@@ -17,27 +17,55 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('section-2').style.display = 'block'
   }
 
+  function getOTP(userData) {
+    var txid = userData.identityAddress + "" + Math.random();
+    console.log("txid", txid)
+    return fetch("https://auth.openintents.org/c/" + txid, {method:"POST"})
+      .then(response => {return response.json();}, error => console.log("error", error))
+      .then(c => {
+        const challenge = c.challenge;
+        console.log("challenge", challenge)
+        return blockstack.putFile("mxid.json", challenge, {encrypt:false}).then(() => {
+          return {
+            username: userData.identityAddress.toLowerCase(), 
+            password:txid + "|" + window.location.origin + "|" + userData.username  
+        }
+      }, error => console.log("err2", error))
+    })
+  }
+
   if (blockstack.isUserSignedIn()) {
     var userData = blockstack.loadUserData()
     var profile = userData.profile
     showProfile(profile)
     document.getElementById('generate-button').addEventListener('click', function(event) {
       event.preventDefault()
-      var txid = userData.identityAddress + "" + Math.random();
-      console.log("txid", txid)
-      fetch("https://auth.openintents.org/c/" + txid, {method:"POST"})
-      .then(response => {return response.json();}, error => console.log("error", error))
-      .then(c => {
-          const challenge = c.challenge;
-          console.log("challenge", challenge)
-          console.log("profile", profile)
-        blockstack.putFile("mxid.json", challenge, {encrypt:false}).then(() => {
-          document.getElementById('id-address').innerHTML = userData.identityAddress.toLowerCase()  
-          document.getElementById('password').innerHTML = txid + "|" + window.location.origin + "|" + userData.username  
-        })
-      }, error => console.log("err2", error));
+      getOTP(userData).then(result => {
+        document.getElementById('id-address').innerHTML = result.username  
+        document.getElementById('password').innerHTML = result.password    
+      })
       document.getElementById('section-login').style.display = 'block'
-      
+    })
+
+    document.getElementById('send-button').addEventListener('click', function(event){
+      event.preventDefault()
+      console.log("creating client")
+      var client = matrixcs.createClient("https://openintents.modular.im");
+      getOTP(userData).then(result => {
+        client.login("m.login.password", 
+        {identifier: {
+            "type": "m.id.user",
+            "user": result.username
+          },
+        user: result.username,
+        password: result.password,
+        initial_device_display_name : "From OI Chat Account Manager"
+      }, function(err, data){
+          console.log("err", err)
+          console.log("data", data)
+      });
+  
+      })
     })
   } else if (blockstack.isSignInPending()) {
     blockstack.handlePendingSignIn().then(function(userData) {
