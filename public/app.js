@@ -19,7 +19,7 @@ blockstackChat = {};
       })
   }
 
-  blockstackChat.sendMessage = function(userData, roomId, message){
+  blockstackChat.sendMessage = function(userData, roomId, content){
     console.log("creating client")
       var client = matrixcs.createClient("https://openintents.modular.im");
       blockstackChat.getOTP(userData).then(result => {
@@ -40,11 +40,7 @@ blockstackChat = {};
                 console.log(event.getType());
               });
             }
-            client.joinRoom(roomId, {}, function (err, data) {
-              var content = {
-                "body": message,
-                "msgtype": "m.text"
-              };
+            client.joinRoom(roomId, {}, function (err, data) {              
               client.sendEvent(roomId, "m.room.message", content, "", (err, res) => {
                 if (err) {
                   console.log(err);
@@ -92,7 +88,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById('send-button').addEventListener('click', function (event) {
       event.preventDefault()
-      blockstackChat.sendMessage(userData, "!MiaZvYagNIApUrnazk:openintents.modular.im", "I have a question")
+      var content = {
+        "body": "is trying automated chat",
+        "msgtype": "m.emote"
+      };
+      blockstackChat.sendMessage(userData, "!MiaZvYagNIApUrnazk:openintents.modular.im", content)
     })
   } else if (blockstack.isSignInPending()) {
     blockstack.handlePendingSignIn().then(function (userData) {
