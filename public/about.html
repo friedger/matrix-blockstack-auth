@@ -2,7 +2,11 @@
 <html>
 
 <head>
-    <title>OI Chat Account Manager</title>
+    <meta charset="utf-8">
+    <title>OI Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="OI Chat" />
+    <title>OI Chat - About</title>
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="app.css" />
 </head>
@@ -10,87 +14,100 @@
 <body>
     <div class="site-wrapper">
         <div class="site-wrapper-inner">
-            <h1 class="landing-heading">OI Chat Account Manager</h1>
-            <p class="lead">Details about your Matrix account at your home server
-                <b>openintents.modular.im</b>
-            </p>
-            <p><a href="index.html">Back</a></p>
+            <a href="index.html">
+                <h1 class="landing-heading">OI Chat</h1>
+            </a>
+
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3"></div>
-                    <div class="col-sm-6 col-lg-3">
-                        <a href="https://matrix.org"><img class="logo" src="https://chat.openintents.org/home/images/matrix.svg"><br />
-                            Learn more about matrix.org</a>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <a href="https://blockstack.org"><img class="logo" src="https://chat.openintents.org/home/images/blockstack.png"><br />
-                            Learn more about blockstack.org</a>
-                    </div>
-                    <div class="col-lg-3"></div>
-                </div>
-                <div class="row">
-                    <div class="item">
+                    <div class="item col-sm-0 col-lg-3"></div>
+                    <div class="item col-sm-12 col-lg-6">
                         <p class="lead">
-                            OI Chat is a dedicated Matrix home server for Blockstack users.
-                            Your blockstack account is your matrix account!
+                            OI Chat is a matrix service dedicated to Blockstack users.
+                            Your Blockstack account is your matrix account.
+                            The first 1000 are given away for free!
                         </p>
                     </div>
+                    <div class="item col-sm-0 col-lg-3"></div>
                 </div>
 
-                <div class="row">
-                    <div class="item col-lg-3"></div>
-                    <div class="item col-sm-12 col-lg-6">
-                        <h3>Features (Home Server)</h3>
-                        <ul class="steps">
-                            <li>No passwords stored on server</li>
-                            <li>Blockstack apps can post in your name</li>
-                            <li>Manage app permissions (coming soon)</li>
-                        </ul>
+                <div class="row verical-align">
+                    <div class="item col-lg-6">
+                        <img src="icon-192x192.png" />
                     </div>
-                    <div class="item col-lg-3"></div>
-                </div>
-                <div class="row">
-                    <div class="item col-lg-3"></div>
                     <div class="item col-sm-12 col-lg-6">
-                        <h3>Features (Client)</h3>
-                        <ul class="steps">
+                        <h3>Features (Chat App)</h3>
+                        <p class="text">
+                            All the goodness from the default Riot app like
+                            1:1 and group chats, end-to-end encryption, video calls, .. plus
+                        </p>
+                        <ul class="text">
                             <li>Login with Blockstack</li>
                             <li>Export/import of e2e keys on Gaia (coming soon)</li>
                             <li>Device verification via Gaia (coming soon)</li>
                         </ul>
+                        <h3>Features (Server)</h3>
+                        <p class="text">
+                            All the goodness from the default matrix server like
+                            decentralization, openness, application integrations, ... plus
+                        </p>
+                        <ul class="text">
+                            <li>No passwords stored on server</li>
+                            <li>Send messages from supported Blockstack apps</li>
+                            <li>Manage app permissions (coming soon)</li>
+                            <li>Support upcoming standardizations (like <a href="https://github.com/matrix-org/matrix-doc/pull/1768">MSC1768</a>)</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item col-sm-12 col-lg-6">
+                        <p>
+                            You can use OI Chat with any <a href="https://matrix.org/docs/projects/clients-matrix">
+                                matrix client</a> you like.
+                            We provide a web client (<a href="https://chat.openintents.org">OI
+                                Chat Web</a>) that leverage features of your blockstack account and simplifies login
+                        </p>
+                        <h3>Login with Other Clients</h3>
+                        <p>
+                            If you choose a different client than OI Chat Web you need to use a one-time login.
+                        </p>
+                        <ul class="steps">
+                            <li><a href="index.html">Sign in with Blockstack here</a></li>
+                            <li>Click "Generate One-Time Login"</li>
+                            <li>Copy and paste
+                                <ul>
+                                    <li>username (your blockstack address) and</li>
+                                    <li>password (details to authenticate you using Gaia storage)</li>
+                                </ul>into the login screen of your client</li>
+                        </ul>
+                    </div>
+                    <div class="item col-lg-6">
+                        <img src="devices.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="container footer">
+                <div class="row">
+                    <div class="item col-lg-3"></div>
+                    <div class="item col-sm-6 col-lg-3">
+                        <a href="https://matrix.org"><img class="logo" src="https://chat.openintents.org/home/images/matrix.svg"><br />
+                            Learn more about matrix.org</a>
+                    </div>
+                    <div class="item col-sm-6 col-lg-3">
+                        <a href="https://blockstack.org"><img class="logo" src="https://chat.openintents.org/home/images/blockstack.png"><br />
+                            Learn more about blockstack.org</a>
                     </div>
                     <div class="item col-lg-3"></div>
                 </div>
                 <div class="row">
                     <div class="item">
-                        <p class="lead">
-                            You can use OI Chat with your <a href="https://matrix.org/docs/projects/clients-matrix">
-                                preferred matrix client</a>.
-                            However, we provide a web client (<a href="https://chat.openintents.org">OI
-                                Chat Web</a>) that leverage features of your blockstack account.
-                        </p>
-                        <p class="lead">
-                            If you use a different client than OI Chat Web you can use a one-time login.
-                            <br />
-                            (Your user name is your blockstack identity address together with a "password"
-                            that helps the home server to authenticate you - using your Gaia storage)
-                        </p>
+                        <p>
+                            &copy; 2019 by <a href="https://openintents.org">Openintents</a></br>
+                            <a href="https://github.com/friedger/matrix-blockstack-auth">Source code on github</a></p>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="item col-sm-0 col-lg-4"></div>
-                    <div class="item col-sm-12 col-lg-4">
-                        <ul class="steps">
-                            <li>Sign in with Blockstack</li>
-                            <li>Click "Generate One-Time Login"</li>
-                            <li>Copy and paste username and password into the login screen of your client</li>
-                        </ul>
-                    </div>
-                    <div class="item col-sm-0 col-lg-4"></div>
                 </div>
             </div>
-            <p><a href="https://github.com/friedger/matrix-blockstack-auth">Source code on github</a></p>
         </div>
     </div>
 </body>

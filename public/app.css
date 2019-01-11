@@ -28,4 +28,9 @@ body{color:#fff;text-align:center;}
 .copypaste{color:#000000}
 
 .logo{height:75px;}
-.steps{text-align: start;}
+.text{text-align: start;}
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+.footer{padding-top:32px;background:#bbbbbb;}

@@ -2,7 +2,10 @@
 <html>
 
 <head>
-  <title>OI Chat Account Manager</title>
+  <meta charset="utf-8">
+  <title>OI Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="OI Chat" />
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="app.css" />
   <script src="bundle.js"></script>
@@ -12,19 +15,19 @@
 <body>
   <div class="site-wrapper">
     <div class="site-wrapper-inner">
-      <h1 class="landing-heading">OI Chat Account Manager</h1>
-      <p class="lead">Details about your Matrix account at your home server
-        <b>openintents.modular.im</b>
-      </p>
-      <p>
-          Use our chat client for Blockstack users:</br>
-        <a href="https://chat.openintents.org">OI Chat Web</a></br>
-        <a href="about.html">Read more</a>
+      <h1 class="landing-heading">OI Chat</h1>
+      <p class="lead">Your gateway to an open network for secure,
+          decentralized communication and collaboration.</p>
+      <p lead>
+        <a href="about.html">
+          OI Chat is a matrix service ...
+        </a>
       </p>
       <div class="panel-landing" id="section-1">
         <p class="lead">
+            Manage Your Account<br/>
           <a href="#" class="btn btn-primary btn-lg" id="signin-button">
-            Sign In with Blockstack
+            Sign In with Blockstack<br/>
           </a>
         </p>
       </div>
@@ -32,7 +35,8 @@
         <div class="avatar-section">
           <img src="https://s3.amazonaws.com/onename/avatar-placeholder.png" class="img-rounded avatar" id="avatar-image">
         </div>
-        <h1>Hello, <span id="heading-name">Anonymous</span>!</h1>
+        <p class="lead">Hello, <span id="heading-name">Anonymous</span>!</p>
+        <p class="small">Your home server is: <b>openintents.modular.im</b></p>
         <p class="lead">
           <a href="#" class="btn btn-primary btn-lg" id="generate-button">
             Generate One Time Login
@@ -49,7 +53,7 @@
         <p class="lead">
           <a href="#" class="btn btn-primary btn-lg" id="send-button">
             Ask the Community
-          </a><br/>
+          </a><br />
           <span class="small">(Sends the message 'I have a question' in your name and starts the chat client)</span>
         </p>
         <p class="lead">
@@ -58,7 +62,14 @@
           </a>
         </p>
       </div>
-      <p><a href="https://github.com/friedger/matrix-blockstack-auth">Source code on github</a></p>
+
+      <p class="lead">Chat and collaborate now<br/>
+        <a href="https://chat.openintents.org" class="btn btn-primary btn-lg">
+        Open OI Chat
+      </a></p>
+      <p>
+        &copy; 2019 by <a href="https://openintents.org">Openintents</a></br>
+        <a href="https://github.com/friedger/matrix-blockstack-auth">Source code on github</a></p>
     </div>
   </div>
 </body>
