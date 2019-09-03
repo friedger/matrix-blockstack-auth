@@ -5,7 +5,14 @@
   <meta charset="utf-8">
   <title>OI Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="OI Chat" />
+  <meta name="description" content="OI Chat Account" />
+  <meta property="og:image:secure_url" content="https://matrix.openintents.org/icon-192x192.png" />
+  <meta property="og:image:alt" content="Coloured screens in a circle">
+  <meta property="og:title" content="OI Chat Account">
+  <meta property="og:description" content="Connecting users across blockchains powered by matrix.org">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matrix.openintents.org">
+
   <link rel="stylesheet" href="bootstrap.min.css" />
   <link rel="stylesheet" href="app.css" />
   <script src="bundle.js"></script>
@@ -44,17 +51,17 @@
         </p>
         <div class="small hide" id="section-login">
           <p>
-            Username: <span class="copypaste mark" id="id-address"></span>
+            Username:<br/> <span class="copypaste mark" id="id-address"></span>
           </p>
           <p>
-            Password: <span class="copypaste mark" id="password"></span>
+            Password:<br/> <span class="copypaste mark" id="password"></span>
           </p>
         </div>
         <p class="lead">
-          <a href="#" class="btn btn-primary btn-lg" id="send-button">
+          <a href="#" class="btn btn-primary btn-lg" id="send-button" >
             Ask the Community
           </a><br />
-          <span class="small">(Sends the message 'I have a question' in your name and starts the chat client)</span>
+          <span class="small">(Sends automated message in your name and opens OI Chat room)</span>
         </p>
         <p class="lead">
           <a href="#" class="btn btn-primary btn-lg" id="signout-button">
