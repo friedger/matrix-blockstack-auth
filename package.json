@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "blockstack": "^18.2.1",
-    "matrix-js-sdk": "^0.14.2",
+    "matrix-js-sdk": "^12.4.1",
     "sourceify": "^0.1.0"
   }
 }
